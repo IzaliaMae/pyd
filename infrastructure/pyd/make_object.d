@@ -1220,6 +1220,7 @@ bool match_format_type(T)(string format) {
             goto case;
         case '=','<','>','!':
             format = format[1 .. $];
+            break;
         default:
             break;
     }
@@ -1227,7 +1228,7 @@ bool match_format_type(T)(string format) {
     switch(format[0]) {
         case 'x', 's', 'p':
             // don't support these
-            enforce(false, "unsupported format: " ~ format);
+            throw new Exception("unsupported format: " ~ format);
         case 'c':
             break;
         case 'b', 'h','i','l','q':
